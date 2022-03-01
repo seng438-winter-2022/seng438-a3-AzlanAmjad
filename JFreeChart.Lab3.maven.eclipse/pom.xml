@@ -4,11 +4,11 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>JFreeChart.maven.eclipse</groupId>
-  <artifactId>JFreeChart</artifactId>
+  <groupId>JFreeChart</groupId>
+  <artifactId>JFreeChart.Lab3.maven.eclipse</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
-  <name>JFreeChart</name>
+  <name>JFreeChart.Lab3.maven.eclipse</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 

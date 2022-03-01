@@ -1,4 +1,4 @@
-package JFreeChart.maven.eclipse.JFreeChart;
+package JFreeChart.JFreeChart.Lab3.maven.eclipse;
 
 /**
  * Hello world!
