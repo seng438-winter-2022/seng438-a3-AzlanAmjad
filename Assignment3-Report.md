@@ -2,12 +2,12 @@
 
 **Lab. Report #3 – Code Coverage, Adequacy Criteria and Test Case Correlation**
 
-| Group \#:      |     |
-| -------------- | --- |
-| Student Names: |     |
-|                |     |
-|                |     |
-|                |     |
+| Group \#:      | 04          |
+| -------------- | ----------- |
+| Student Names: | Azlan Amjad |
+|                | Saud Agha   |
+|                | Sajid Hafiz |
+|                | Rohan Amjad |
 
 (Note that some labs require individual reports while others require one report
 for each group. Please see each lab document for details.)
