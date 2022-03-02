@@ -19,6 +19,10 @@ Text…
 
 # 3 A detailed description of the testing strategy for the new unit test
 
+Text...
+
+# 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
+
 ## Measuring Control Flow Coverage
 
 
@@ -27,9 +31,6 @@ Text…
 
 
 
-# 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
-
-Text…
 
 # 5 A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)
 
