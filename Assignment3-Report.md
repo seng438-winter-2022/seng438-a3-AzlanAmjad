@@ -38,14 +38,15 @@ Text…
 
 Text…
 
-
-
-
-
 # 6 Pros and Cons of coverage tools used and Metrics you report
+
+...using one or more code coverage tools and report about the pros and cons of your metrics and tool choices
 
 EclEmma
 - write here
+
+
+
 
 # 7 A comparison on the advantages and disadvantages of requirements-based test generation and coverage-based test generation.
 
