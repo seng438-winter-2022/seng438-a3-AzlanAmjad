@@ -43,13 +43,15 @@ Range
 
 ## Measuring Data Flow Coverage Manually
 
-# 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
 
-Text...
 
 ## Test Suite Development
 
 
+
+# 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
+
+Text...
 
 # 5 A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)
 
