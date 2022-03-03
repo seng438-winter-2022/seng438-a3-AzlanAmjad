@@ -29,7 +29,7 @@ To measure control flow coverage of our current test suite, we have decided to u
 
 The first step is to select classes for instrumentation. We have selected **org.jfree.data.DataUtilities** and **org.jfree.data.Range**, since these are the classes we wrote unit tests for in the previous assignment. For the second step, we ran the EclEmma code coverage analysis tool on these classes.
 
-For our current test suite we will report three coverage metrics. The three metrics are listed below
+For our current test suite we will report three coverage metrics. The three metrics for each class are listed below
 
 DataUtilities
 - **Statement/Instruction** Coverage = 175 / 329 * 100% = **53.2%**
