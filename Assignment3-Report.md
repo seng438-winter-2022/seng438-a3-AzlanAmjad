@@ -39,7 +39,7 @@ DataUtilities
 - **Method** Coverage = 5 / 10 * 100% = **50.0%**
 
 Range
-- **Statement/Instruction** Coverage = 87 / 465 * 100% = 18.7%
+- **Statement/Instruction** Coverage = 87 / 465 * 100% = **18.7%**
 - **Branch** Coverage = 4 / 72 * 100% = **5.6%**
 - **Method** Coverage = 7 / 23 * 100% = **30.4%**
 
