@@ -8,13 +8,13 @@ class RangeTest {
 	private Range exampleRange;
 
 	@BeforeEach
-	public void setUpFive() throws Exception {
+	public void setUp() throws Exception {
 		// setup a new Range object
 		exampleRange = new Range(-200, -100);
 	}
 
 	@AfterEach
-	public void tearDownFour() throws Exception {
+	public void tearDown() throws Exception {
 		// tear down of Range object
 		exampleRange = null;
 	}
