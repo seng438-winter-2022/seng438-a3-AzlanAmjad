@@ -62,7 +62,7 @@ The adequacy criteria includes statement, branch, and method coverage. When anal
 
 From our studies we know that Modified Condition-Decision Criterion (MC/DC) subsumes all other testing criterion, including branch and statement coverage. And branch coverage subsumes statement coverage. Therefore if we are able to achieve 100% MC/DC coverage we can assume we have achieved 100% coverage for all other control flow metrics.
 
-To reach the adequacy criteria, we plan to develop tests which on the MC/DC coverage and branch coverage, this will ensure we reach the needed coverages for statement, and method. Because we do not have access to a direct condition coverage metric since we are using EclEmma, we will focus on increasing branch coverage, and instinctively develop tests to increase MC/DC coverage.
+To reach the adequacy criteria, we plan to develop tests which focus on increasing the MC/DC coverage and branch coverage, this will ensure we reach the needed coverages for statement, and method. Because we do not have access to a direct condition coverage metric since we are using EclEmma, we will focus on increasing branch coverage, and instinctively develop tests to increase MC/DC coverage.
 
 
 # 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
