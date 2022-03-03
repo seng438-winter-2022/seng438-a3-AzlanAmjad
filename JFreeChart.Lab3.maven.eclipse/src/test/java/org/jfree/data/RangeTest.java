@@ -166,7 +166,30 @@ class RangeTest {
 		assertEquals(-Double.MAX_VALUE, exampleRange.getLowerBound(), .000000001d,
 				"The lower bound should be -Double.MAX_Value");
 		assertEquals(1000, exampleRange.getUpperBound(), .000000001d, "The upper bound should be 1000");
-
+	}
+	
+	// TEST combine()
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	public void testCombineNullRange1() {
+		// Testing combine (Range range1, Range range2)
+		exampleRange = new Range(2, 100); // range 2 to 100
+		Range nullRange = null; // a null range
+		Range combined = Range.combine(nullRange, exampleRange);
+		
+		// expected combined = exampleRange
+		assertSame(exampleRange, combined, "Expect exampleRange to be returned from combine");
+	}
+	
+	@Test
+	public void testCombineNullRange2() {
+		// Testing combine (Range range1, Range range2)
+		exampleRange = new Range(2, 100); // range 2 to 100
+		Range nullRange = null; // a null range
+		Range combined = Range.combine(exampleRange, nullRange);
+				
+		// expected combined = exampleRange
+		assertSame(exampleRange, combined, "Expect exampleRange to be returned from combine");
 	}
 
 	// TEST getLowerBound()
