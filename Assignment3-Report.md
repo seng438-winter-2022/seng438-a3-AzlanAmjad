@@ -29,7 +29,7 @@ To measure control flow coverage of our current test suite, we have decided to u
 
 The first step is to select classes for instrumentation. We have selected **org.jfree.data.DataUtilities** and **org.jfree.data.Range**, since these are the classes we wrote unit tests for in the previous assignment. For the second step, we ran the EclEmma code coverage analysis tool on these classes.
 
-For our current test suite we will report three coverage metrics. The three metrics for each class are listed below
+For our current test suite we will report three coverage metrics. The three metrics for each class are listed below. Since the coverage tool that we are using (EclEmma) does not report condition coverage, we will be using method coverage as a metric instead.
 
 DataUtilities
 - **Statement/Instruction** Coverage = 175 / 329 * 100% = **53.2%**
@@ -47,6 +47,22 @@ Range
 
 ## Test Suite Development
 
+We will design new unit tests for the **DataUtilities** and **Range** classes so we can increase their code coverage. The new adequacy criteria are listed below.
+
+Minimum coverage:
+- 90% statement coverage
+- 70% branch coverage
+- 60% method coverage
+
+To begin, we will document a testing plan.
+
+Our group will split the two classes among two subgroups, two individuals will on work on increasing the code coverage of one class. We plan on helping each other where necessary.
+
+The adequacy criteria includes statement, branch, and method coverage. When analyzing the code coverage, we can look at multiple control flow criteria, including statement/instruction/line, decision/branch, condition, and even path coverage.
+
+From our studies we know that Modified Condition-Decision Criterion (MC/DC) subsumes all other testing criterion, including branch and statement coverage. And branch coverage subsumes statement coverage. Therefore if we are able to achieve 100% MC/DC coverage we can assume we have achieved 100% coverage for all other control flow metrics.
+
+To reach the adequacy criteria, we plan to develop tests which on the MC/DC coverage and branch coverage, this was we will be able to reach the needed coverages for statement, and method.
 
 
 # 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
