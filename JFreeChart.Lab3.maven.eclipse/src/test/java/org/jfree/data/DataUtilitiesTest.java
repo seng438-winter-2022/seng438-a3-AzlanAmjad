@@ -207,5 +207,151 @@ class DataUtilitiesTest {
 		assertEquals(0, DataUtilities.calculateRowTotal(values2D, 0),
 				"When 0 columns exist, 0 should be the total of a row");
 	}
+	
+	@Test
+	public void testEqualWhenAIsNull() {
+		/**
+		 * Tests the equal methods first branch if (a == null)
+		 */
+		double[][] b = {{1.0, 2.0}, {3.0, 4.0}};
+		assertEquals(DataUtilities.equal(null, b), false);
+	}
+	
+	@Test
+	public void testEqualWhenBIsNullAndAIsNotNull() {
+		/**
+		 * Tests the equal methods second branch if (b == null)
+		 */
+		double [][] a = {{1.0, 2.0}, {3.0, 4.0}};
+		assertEquals(DataUtilities.equal(a, null), false);
+	}
+	
+	@Test
+	public void testEqualWhenSizeOfAisNotEqualToSizeOfB() {
+		/**
+		 * Tests the equal methods third branch if (a.length != b.length)
+		 */
+		double [][] a = {{1.0, 2.0}, {3.0, 4.0}, {5.0, 6.0}};
+		double [][] b = {{1.0}, {2.0}};
+		assertEquals(DataUtilities.equal(a, b), false);
+	}
+	
+	@Test
+	public void testClone() {
+		/**
+		 * Tests the clone method
+		 */
+		double [][] a = {{1.0, 2.0}, {3.0}};
+		assertArrayEquals(DataUtilities.clone(a), a);
+	}
+	
+	@Test
+	public void testCloneWithNullInnerArray() {
+		/**
+		 * Tests the clone method with null inner array
+		 */
+		double [][] a = {{1.0, 2.0}, null};
+		assertArrayEquals(DataUtilities.clone(a), a);
+	}
+	
+	@Test 
+	public void testCreateNumberArray2D() {
+		/**
+		 * Tests createNumberArray2D
+		 */
+		Number[][] temp = new Number[][]{{1.0, 2.0, 3.0}, {4.0, 5.0, 6.0}};
+		double [][] a = {{1.0 ,2.0 ,3.0}, {4.0, 5.0, 6.0}};
+		assertArrayEquals(DataUtilities.createNumberArray2D(a), temp);
+	}
+	
+	@Test
+    public void calculateColumnTotalWithNullValues() { 
+        // tests with row values that contain null in row 0
+        // Boundary test
+
+        // setup
+        when(values2D.getRowCount()).thenReturn(2);
+
+        when(values2D.getValue(0, 0)).thenReturn(null);
+        when(values2D.getValue(1, 0)).thenReturn(5);
+
+        when(values2D.getValue(0, 1)).thenReturn(5);
+        when(values2D.getValue(1, 1)).thenReturn(8);
+
+        when(values2D.getValue(0, 2)).thenReturn(8);
+        when(values2D.getValue(1, 2)).thenReturn(13);
+
+        assertEquals(5, DataUtilities.calculateColumnTotal(values2D, 0), "Total of column 0 should be 5");        
+        
+    }
+	
+	@Test
+    public void calculatingPercentageWithNull() { 
+        /*
+         * Testing for null parameter, as one of the inputs is null
+         * expected output is null as calculation with null is not possible
+         */
+        
+        when(keyValue.getItemCount()).thenReturn(1);
+        when(keyValue.getValue(0)).thenReturn(null);
+        when(keyValue.getKey(0)).thenReturn(0);
+        KeyedValues temp = DataUtilities.getCumulativePercentages(keyValue);
+
+        assertEquals(null, temp.getValue(0), "should return null due to division by null");        
+        
+    }
+	
+	@Test
+    public void calculateColumnTotal2DRows() { 
+        
+        // Setup the Values2D Table
+        // ________
+        // |1|4|8 |
+        // |2|5|13|
+        // The calculations will be done on (0,0) and (1,0), which is expected to be 1 + 2 = 3.
+        
+        when(values2D.getRowCount()).thenReturn(2);
+
+        when(values2D.getValue(0, 0)).thenReturn(1);
+        when(values2D.getValue(1, 0)).thenReturn(2);
+
+        when(values2D.getValue(0, 1)).thenReturn(4);
+        when(values2D.getValue(1, 1)).thenReturn(5);
+
+        when(values2D.getValue(0, 2)).thenReturn(8);
+        when(values2D.getValue(1, 2)).thenReturn(13);
+        
+        int[] rows = {0, 1}; 
+        
+        
+        assertEquals(3, DataUtilities.calculateColumnTotal(values2D, 0, rows), "Total of column 0 in Rows 1 and 2 should be 3");        
+        
+    }
+	
+	@Test
+    public void calculateRowTotal2DRows() { 
+        
+        // Setup the Values2D Table
+        // ________
+        // |1|4|8 |
+        // |2|5|13|
+        // The calculations will be done on (0,0) and (0,1), which is expected to be 1 + 4 = 5.
+        
+        when(values2D.getColumnCount()).thenReturn(3);
+
+        when(values2D.getValue(0, 0)).thenReturn(1);
+        when(values2D.getValue(0, 1)).thenReturn(4);
+        when(values2D.getValue(0, 2)).thenReturn(8);
+
+        when(values2D.getValue(1, 0)).thenReturn(2);
+        when(values2D.getValue(1, 1)).thenReturn(5);
+        when(values2D.getValue(1, 2)).thenReturn(13);
+        
+        int[] cols = {0, 1}; 
+        
+        
+        assertEquals(5, DataUtilities.calculateRowTotal(values2D, 0, cols), "Total of row 0 in Columns 1 and 2 should be 5");    
+        
+    }
 
 }
