@@ -24,7 +24,7 @@ class RangeTest {
 	@Test
 	void RangeLowerBoundGreaterThanUpperBound() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			exampleRange = new Range(100, 0);;
+			exampleRange = new Range(100, 0);
 		}, "creating Range with lower > upper");
 	}
 	
@@ -168,7 +168,6 @@ class RangeTest {
 		assertEquals(0, exampleRange.getUpperBound(), "Expanding lower bound by a margin of -200%, now should be upper bound 0");
 	}
 	
-	
 	// TEST combine()
 	@Test
 	public void testCombineRangeMinBoundary() {
@@ -290,11 +289,164 @@ class RangeTest {
 		assertEquals(40, combinedRange.getUpperBound(), "combining range with upper bounds 10, and 40");
 	}
 	
-	// TEST 
+	// TEST intersects(double b0, double b1)
 	// Increasing branch and MC/DC control flow coverage
 	@Test
-	void isNaNRange() {
-		
+	void intersectsTrueFromBottom() {
+		// b0 <= this.lower
+		// b1 > this.lower
+		boolean val = exampleRange.intersects(-300, -150);
+		assertEquals(true, val, "range (-300, -150) intersect with range (-200, -100)");
 	}
 	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void intersectsFalseFromBottom() {
+		// b0 <= this.lower
+		// b1 <= this.lower
+		boolean val = exampleRange.intersects(-400, -300);
+		assertEquals(false, val, "range (-400, -300) intersect with range (-200, -100)");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void intersectTrueFromTop() {
+		// b0 > this.lower
+		// b0 < this.upper
+		// b1 >= b0
+		boolean val = exampleRange.intersects(-150, 0);
+		assertEquals(true, val, "range (-150, 0) intersect with range (-200, -100)");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void intersectFalseFromTop() {
+		// b0 > this.lower
+		// b0 >= this.upper
+		// b1 >= b0
+		boolean val = exampleRange.intersects(-50, 0);
+		assertEquals(false, val, "range (-50, 0) intersect with range (-200, -100)");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void intersectFalseFromTopb0GreaterThanb1() {
+		// b0 > this.lower
+		// b0 < this.upper
+		// b0 > b1
+		assertThrows(IllegalArgumentException.class, () -> {
+			exampleRange.intersects(-150, -200);
+		}, "range (-150, -200) -> (min, max) intersect with (-200, -100)");
+	}
+	
+	// TEST constrain(double value)
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void constrainValueInRange() {
+		double val = exampleRange.constrain(-150);
+		assertEquals(-150, val, "constrain value -150 in range (-200, -100)");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void constrainValueAboveRange() {
+		double val = exampleRange.constrain(0);
+		assertEquals(-100, val, "constrain value 0 above range (-200, -100)");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void constrainValueBelowRange() {
+		double val = exampleRange.constrain(-300);
+		assertEquals(-200, val, "constrain value -300 below range (-200, -100)");
+	}
+	
+	// TEST equals(Object obj)
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void equalsNotRangeObject() {
+		Double notRangeObject = new Double(43.2);
+		boolean val = exampleRange.equals(notRangeObject);
+		assertEquals(false, val, "Double object equals Range");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void equalsLowerBoundNotEqual() {
+		Range newRange = new Range(-300, -100);
+		boolean val = exampleRange.equals(newRange);
+		assertEquals(false, val, "Range (-300, -100) equal Range (-200, -100)");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void equalsUpperBoundNotEqual() {
+		Range newRange = new Range(-200, 0);
+		boolean val = exampleRange.equals(newRange);
+		assertEquals(false, val, "Range (-200, 0) equal Range (-200, -100)");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void equalsRangeEqual() {
+		Range newRange = new Range(-200, -100);
+		boolean val = exampleRange.equals(newRange);
+		assertEquals(true, val, "Range (-200, -100) equal Range (-200, -100)");
+	}
+	
+	// TEST expandToInclude(Range range, double value)
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void expandToIncludeNullRange() {
+		Range nullRange = null;
+		Range newRange = Range.expandToInclude(nullRange, 20);
+		assertEquals(20, newRange.getLowerBound(), "lower bound of range = null range include 20");
+		assertEquals(20, newRange.getUpperBound(), "upper bound of range = null range include 20");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void expandToIncludeValueBelowRange() {
+		Range newRange = Range.expandToInclude(exampleRange, -300);
+		assertEquals(-300, newRange.getLowerBound(), "lower bound of range (-200, -100) include -300");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void expandToIncludeValueAboveRange() {
+		Range newRange = Range.expandToInclude(exampleRange, 0);
+		assertEquals(0, newRange.getUpperBound(), "upper bound of range (-200, -100) include 0");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void expandToIncludeValueInRange() {
+		Range newRange = Range.expandToInclude(exampleRange, -150);
+		assertSame(exampleRange, newRange, "expand to include -150 in range (-200, -100)");
+	}
+	
+	// TEST shift(Range base, double delta, boolean allowZeroCrossing)
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void shiftBaseNull() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			Range.shift(null, 0, true);
+		}, "shifting with null base");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void shiftAllowZeroCrossing() {
+		Range expected = new Range(100, 200);
+		Range actual = Range.shift(exampleRange, 300, true);
+		assertTrue(actual.equals(expected), "shift range (-200, -100) by delta of 300");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void shiftDontAllowZeroCrossing() {
+		Range expected = new Range(-50, 0);
+		Range actual = Range.shift(exampleRange, 150, false);
+		assertTrue(actual.equals(expected), "shift range (-200, -100) by delta of 150 with no zero crossing");
+	}
 }
