@@ -27,7 +27,21 @@ For the first part of the test design component, we measure the adequacy of our 
 
 ## Measuring Control Flow Coverage
 
+To measure control flow coverage of our current test suite, we have decided to use EclEmma.
 
+The first step is to select classes for instrumentation. We have selected **org.jfree.data.DataUtilities** and **org.jfree.data.Range**, since these are the classes we wrote unit tests for in the previous assignment. For the second step, we ran the EclEmma code coverage analysis tool on these classes.
+
+For our current test suite we will report three coverage metrics. The three metrics are listed below
+
+DataUtilities
+- **Statement/Instruction** Coverage = 175 / 329 * 100% = **53.2%**
+- **Branch** Coverage = 22 / 48 * 100% = **45.8%**
+- **Method** Coverage = 5 / 10 * 100% = **50.0%**
+
+Range
+- **Statement/Instruction** Coverage = 87 / 465 * 100% = 18.7%
+- **Branch** Coverage = 4 / 72 * 100% = **5.6%**
+- **Method** Coverage = 7 / 23 * 100% = **30.4%**
 
 ## Measuring Data Flow Coverage Manually
 
@@ -45,8 +59,9 @@ Text…
 
 ...using one or more code coverage tools and report about the pros and cons of your metrics and tool choices
 
+You need to report the pros and cons of tools you tried and the metrics you chose
+
 EclEmma
-- write here
 
 
 
