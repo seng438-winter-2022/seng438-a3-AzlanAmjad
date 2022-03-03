@@ -21,8 +21,6 @@ Saud and Rohan
 
 White-box testing: Control Flow and Data Flow Coverage
 
-# 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
-
 For the first part of the test design component, we measure the adequacy of our current test suite using one or more code coverage tools.
 
 ## Measuring Control Flow Coverage
@@ -45,7 +43,9 @@ Range
 
 ## Measuring Data Flow Coverage Manually
 
+# 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
 
+Text...
 
 ## Test Suite Development
 
