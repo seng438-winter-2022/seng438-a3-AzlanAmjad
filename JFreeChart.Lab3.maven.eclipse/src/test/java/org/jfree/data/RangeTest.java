@@ -19,6 +19,15 @@ class RangeTest {
 		exampleRange = null;
 	}
 
+	// TEST Range() constructor
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void RangeLowerBoundGreaterThanUpperBound() {
+		Range newRange = new Range(100, 0);
+		assertEquals(0, newRange.getLowerBound(), "Upper bound 0 now lower bound since lower bound is greater");
+		assertEquals(100, newRange.getUpperBound(), "Lower bound 0 now lower bound since upper bound is less");
+	}
+	
 	// TEST getCentralValue()
 	@Test
 	void calculatingDoubleMaxtoDoubleMin() {
@@ -48,7 +57,7 @@ class RangeTest {
 	}
 
 	@Test
-	void calculatingDoubleMaxMinusOneDoubleMinMinussOne() {
+	void calculatingDoubleMaxMinusOneDoubleMinMinusOne() {
 		/*
 		 * Testing getCentralValue in Range Testing the boundary of max double - 1 and
 		 * min double - 1 A - 1 and B - 1 This is within boundary Test "fails" as
@@ -151,6 +160,15 @@ class RangeTest {
 				"Expanding the lower bound by 100% of the range length should result in a new lower bound of -300");
 	}
 
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	public void expandLowerBoundGreaterThanUpperBound() {
+		exampleRange = Range.expand(exampleRange, -2, -3);
+		assertEquals(-400, exampleRange.getLowerBound(), "Expanding upper bound by a margin of -300%, now should be lower bound -400");
+		assertEquals(0, exampleRange.getUpperBound(), "Expanding lower bound by a margin of -200%, now should be upper bound 0");
+	}
+	
+	
 	// TEST combine()
 	@Test
 	public void testCombineRangeMinBoundary() {
@@ -168,12 +186,10 @@ class RangeTest {
 		assertEquals(1000, exampleRange.getUpperBound(), .000000001d, "The upper bound should be 1000");
 	}
 	
-	// TEST combine()
 	// Increasing branch and MC/DC control flow coverage
 	@Test
-	public void testCombineNullRange1() {
+	void testCombineNullRange1() {
 		// Testing combine (Range range1, Range range2)
-		exampleRange = new Range(2, 100); // range 2 to 100
 		Range nullRange = null; // a null range
 		Range combined = Range.combine(nullRange, exampleRange);
 		
@@ -181,10 +197,10 @@ class RangeTest {
 		assertSame(exampleRange, combined, "Expect exampleRange to be returned from combine");
 	}
 	
+	// Increasing branch and MC/DC control flow coverage
 	@Test
-	public void testCombineNullRange2() {
+	void testCombineNullRange2() {
 		// Testing combine (Range range1, Range range2)
-		exampleRange = new Range(2, 100); // range 2 to 100
 		Range nullRange = null; // a null range
 		Range combined = Range.combine(exampleRange, nullRange);
 				
@@ -209,4 +225,18 @@ class RangeTest {
 		double actual = r.getUpperBound();
 		assertEquals(1000.0, actual, "getting upper bound");
 	}
+	
+	// TEST combineIgnoringNaN()
+	// Increasing branch and MC/DC control flow coverage
+	/*void combineIgnoringNaNRange1NullRange2NotNull() {
+		// testing combineIgnoringNaN(Range range1, Range range2)
+		// range1 = null
+		// range2 != null
+		// !range2.isNaNRange()
+		Range nullRange = null;
+		Range combinedRange = Range.combineIgnoringNaN(nullRange, exampleRange);
+		assertSame(exampleRange, combinedRange, "Null range1 with not null range2 && not range2.isNaNRange()");
+	}*/
+	
+	
 }
