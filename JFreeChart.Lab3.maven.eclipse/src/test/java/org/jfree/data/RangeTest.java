@@ -23,9 +23,9 @@ class RangeTest {
 	// Increasing branch and MC/DC control flow coverage
 	@Test
 	void RangeLowerBoundGreaterThanUpperBound() {
-		Range newRange = new Range(100, 0);
-		assertEquals(0, newRange.getLowerBound(), "Upper bound 0 now lower bound since lower bound is greater");
-		assertEquals(100, newRange.getUpperBound(), "Lower bound 0 now lower bound since upper bound is less");
+		assertThrows(IllegalArgumentException.class, () -> {
+			exampleRange = new Range(100, 0);;
+		}, "creating Range with lower > upper");
 	}
 	
 	// TEST getCentralValue()
@@ -228,7 +228,8 @@ class RangeTest {
 	
 	// TEST combineIgnoringNaN()
 	// Increasing branch and MC/DC control flow coverage
-	/*void combineIgnoringNaNRange1NullRange2NotNull() {
+	@Test
+	void combineIgnoringNaNRange1NullRange2NotNullAndNotisNaNRange() {
 		// testing combineIgnoringNaN(Range range1, Range range2)
 		// range1 = null
 		// range2 != null
@@ -236,7 +237,64 @@ class RangeTest {
 		Range nullRange = null;
 		Range combinedRange = Range.combineIgnoringNaN(nullRange, exampleRange);
 		assertSame(exampleRange, combinedRange, "Null range1 with not null range2 && not range2.isNaNRange()");
-	}*/
+	}
 	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void combineIgnoringNaNRange1NullRange2NotNullAndisNaNRange() {
+		// testing combineIgnoringNaN(Range range1, Range range2)
+		// range1 = null
+		// range2 != null
+		// range2.isNaNRange();
+		Range nullRange = null;
+		Range nanRange = new Range(Double.NaN, Double.NaN);
+		Range combinedRange = Range.combineIgnoringNaN(nullRange, nanRange);
+		assertEquals(null, combinedRange, "Null range1 with not null range2 && range2.isNaNRange()");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void combineIgnoringNaNRange1NotNullAndNotisNaNRangeRange2Null() {
+		// testing combineIgnoringNaN(Range range1, Range range2)
+		// range1 != null
+		// !range1.isNaNRange()
+		// range2 = null
+		Range nullRange = null;
+		Range combinedRange = Range.combineIgnoringNaN(exampleRange, nullRange);
+		assertSame(exampleRange, combinedRange, "Null range2 with not null range1 && not range1.isNaNRange()");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void combineIgnoringNaNRange1NotNullAndisNaNRangeRange2Null() {
+		// testing combineIgnoringNaN(Range range1, Range range2)
+		// range1 != null
+		// range1.isNaNRange()
+		// range2 = null
+		Range nullRange = null;
+		Range nanRange = new Range(Double.NaN, Double.NaN);
+		Range combinedRange = Range.combineIgnoringNaN(nanRange, nullRange);
+		assertEquals(null, combinedRange, "Not null range1 and range1.isNaNRange with null range2");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void combineIgnoringNaNRange1NotNullRange2NotNull() {
+		// testing combineIgnoringNaN(Range range1, Range range2)
+		// range1 != null
+		// range2 != null
+		Range range1 = new Range(3, 10);
+		Range range2 = new Range(4, 40);
+		Range combinedRange = Range.combineIgnoringNaN(range1, range2);
+		assertEquals(3, combinedRange.getLowerBound(), "combining range with lower bounds 3, and 4");
+		assertEquals(40, combinedRange.getUpperBound(), "combining range with upper bounds 10, and 40");
+	}
+	
+	// TEST 
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void isNaNRange() {
+		
+	}
 	
 }
