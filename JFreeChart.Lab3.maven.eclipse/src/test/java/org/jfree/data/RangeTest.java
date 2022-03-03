@@ -170,7 +170,7 @@ class RangeTest {
 	
 	// TEST combine()
 	@Test
-	public void testCombineRangeMinBoundary() {
+	public void combineRangeMinBoundary() {
 		// Testing combine(Range r1, Range r2)
 		exampleRange = new Range(-Double.MAX_VALUE, 100);
 		Range exampleRange2 = new Range(5, 1000);
@@ -187,7 +187,7 @@ class RangeTest {
 	
 	// Increasing branch and MC/DC control flow coverage
 	@Test
-	void testCombineNullRange1() {
+	void combineNullRange1() {
 		// Testing combine (Range range1, Range range2)
 		Range nullRange = null; // a null range
 		Range combined = Range.combine(nullRange, exampleRange);
@@ -198,13 +198,24 @@ class RangeTest {
 	
 	// Increasing branch and MC/DC control flow coverage
 	@Test
-	void testCombineNullRange2() {
+	void combineNullRange2() {
 		// Testing combine (Range range1, Range range2)
 		Range nullRange = null; // a null range
 		Range combined = Range.combine(exampleRange, nullRange);
 				
 		// expected combined = exampleRange
 		assertSame(exampleRange, combined, "Expect exampleRange to be returned from combine");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void combineWithOneNaNinBothRanges() {
+		Range range1 = new Range(Double.NaN, 30);
+		Range range2 = new Range(0, Double.NaN);
+		Range expected = new Range(0, 30);
+		Range combined = Range.combine(range1, range2);
+		
+		assertTrue(combined.equals(expected), "combining range (NaN, 30) with range (0, NaN)");
 	}
 
 	// TEST getLowerBound()
@@ -448,5 +459,62 @@ class RangeTest {
 		Range expected = new Range(-50, 0);
 		Range actual = Range.shift(exampleRange, 150, false);
 		assertTrue(actual.equals(expected), "shift range (-200, -100) by delta of 150 with no zero crossing");
+	}
+	
+	// TEST scale(Range base, double factor)
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void scaleBaseNull() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			Range.scale(null, 200);
+		}, "scaling null base");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void scaleNegativeFactor() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			Range.scale(exampleRange, -200);
+		}, "scaling factor negative");
+	}
+	
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void scaleBase() {
+		Range expected = new Range(-400, -200);
+		Range actual = Range.scale(exampleRange, 2);
+		assertTrue(actual.equals(expected), "scaling range (-200, -100) by a factor of 2");
+	}
+	
+	// TEST toString()
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void toStringRange() {
+		String expected = "Range[-200.0,-100.0]";
+		String actual = exampleRange.toString();
+		assertTrue(actual.equals(expected), "to string range (-200, -100)");
+	}
+	
+	// TEST shift(Range base, double delta)
+	// Increasing branch and MC/DC control flow coverage
+	@Test
+	void shiftBase() {
+		Range expected = new Range(0.0, 100.0);
+		Range actual = Range.shift(exampleRange, 200.0);
+		assertTrue(actual.equals(expected), "shift range (-200, -100) by delta 200");
+	}
+	
+	// TEST intersects(Range range)
+	@Test
+	void intersectsRange() {
+		Range newRange = new Range(-150, 300);
+		boolean val = exampleRange.intersects(newRange);
+		assertTrue(val, "range (-150, 300) intersects with range (-200, -100)");
+	}
+	
+	// TEST hashcode()
+	@Test
+	void hashcodeInt() {
+		assertNotNull(exampleRange.hashCode(), "getting hashcode from range (-200, -100)");
 	}
 }
