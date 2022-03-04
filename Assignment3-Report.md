@@ -234,7 +234,35 @@ Text...
 
 # 5 A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)
 
-Text…
+Here is our coverages of test suite which was submitted in lab 2. 
+
+Instruction Coverage: 
+
+![InstructionCoverage](media/beforeInstruction.png)
+
+
+Branch Coverage:
+
+![BranchCoverage](media/beforeBranch.png)
+
+Method Coverage:
+
+![MethodCoverage](media/beforeMethod.png)
+
+This is our coverages with the updated test suite (Note: Initial test suite from lab 2 is included, as we added more test cases to increase coverages): 
+
+Instruction Coverage: 
+
+![InstructionCoverage](media/afterInstruction.png)
+
+
+Branch Coverage:
+
+![BranchCoverage](media/afterBranch.png)
+
+Method Coverage:
+
+![MethodCoverage](media/afterMethod.png)
 
 # 6 Pros and Cons of coverage tools used and Metrics you report
 
