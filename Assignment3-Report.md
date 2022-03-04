@@ -11,7 +11,7 @@
 
 # 1 Introduction
 
-Text…
+This lab introduced white box testing practices, specifically deriving test cases based on the analysis of the source code of JFreeChart. These new test cases were used in conjunction with code coverage tools such as EclEmma  to determine the new code coverage of the SUT. 
 
 # 2 Manual data-flow coverage calculations for X and Y methods
 
@@ -236,7 +236,7 @@ calculatingPercentageWithNull() - In our initial test suite from lab 2, we did n
 
 calculateColumnTotalWithNullValues() - For the method calculateColumnTotal(), we did not testtall the branches due to lack of knowledge of source code. By observing the source code, we noticed that an additional branch which checked for null values was ommitted in our initial test suite. Using mocking, we provided the method with a null value for one of the rows, resulting in the branch being covered. As a result, both our instruction and branch coverage increased for DataUtilities class. 
 
-intersectsTrueFromBottom() - To increase both branch coverage and instruction coverage, test cases were created for intersects() method. Previously, 
+intersectsTrueFromBottom() - To increase both branch coverage and instruction coverage, test cases were created for intersects(double b1, double b2) method. Previously, 
 we did not have any test cases for this method. Since branch coverage is a stronger form of coverage than instruction coverage as it follows that
 testing all branches means we have tested all statements, or instructions in the reported metrics. The test cases were created from observing the
 source code and recognizing the different branches that originated from the if conditions in the source code. This test case results in one branch being tested. The selected branch being tested is when b0 <= this.lower
@@ -277,27 +277,35 @@ Method Coverage:
 
 # 6 Pros and Cons of coverage tools used and Metrics you report
 
-...using one or more code coverage tools and report about the pros and cons of your metrics and tool choices
+The metrics we chose are: instruction, branch, and condition coverage. The sole tool we used is EclEmma in this lab.
 
-You need to report the pros and cons of tools you tried and the metrics you chose
+Pros of Instruction Coverage:
 
-EclEmma
+Cons of Instruction Coverage:
+
+Pros of Branch Coverage:
+
+Cons of Branch Coverage:
+
+Pros of Condition Coverage:
+
+Cons of Condition Coverage:
+
+Pros of EclEmma:
+
+Cons of EclEmma:
 
 
 
 
 # 7 A comparison on the advantages and disadvantages of requirements-based test generation and coverage-based test generation.
-
-Text…
+Although both White Box testing techniques and Black Box testing technique should be used, they do each have their own unique advantages and disadvantages. The advantages of the requirements-based test generation (Black Box testing) is that you don't need the source code at all. You only require the documentation and the system requirements; however, as a disadvantage this also means you sometimes need to make assumptions on how the system is supposed to work which may affect your test cases. Additionally, creating test cases using Black Box testing techniques such as ECT are far more complex than say, branch coverage for White Box testing. The advantages of White Box testing is that you have the source code and no assumptions are required which means it becomes easy to analyze how the data and control flow in the system; however, a disadvantage of White Box testing is that it requires strenuous effort to find hidden errors along a path that may cause problems, for example a divide by zero error that may not become immediately apparent with branch coverage. Additionally, as seen from this lab, White Box testing requires much more time developmnt to hit certain coverage criteria goals. It also requires the use of external code coverage tools wereas Black Box testing requires none. 
 
 # 8 A discussion on how the team work/effort was divided and managed
-
-Text…
+The group was divided into pairs who would work on each class (DataUtilities & Range). Each member of the pair were given a target for each coverage metric to aim for. Upon completion of all test cases for a single method, it was reviewed by the other member in the pair. The data flow coverage and analysis was completed as a group. 
 
 # 9 Any difficulties encountered, challenges overcome, and lessons learned from performing the lab
-
-Text…
+The challenges overcome with the lab was specifically with covering branch coverage. Sometimes, there would be multipe branches which would increase complexity of the test cases so a diagram (CFG) was needed to visualize these branches from which a path was selected. This path would be represented as a test case in our SUT. The lesson learned is that both Black Box and White Box testing techniques are incredibly helpful and that only one should not be used, but rather both should be used for a more comprehensive SUT. Seeing how little coverage we had from only the Black Box techniques allowed us to appreciate White Box techniques. 
 
 # 10 Comments/feedback on the lab itself
-
-Text…
+This lab and the previous one was a great opportunity in understanding industry testing techniques; however, for instruction coverage many more test cases needed to be completed compared to the last lab. I believe that to balance the workload from both of these two labs, either the metric should be decreased or the number of methods we should've tested in the previous lab should've increased. 
