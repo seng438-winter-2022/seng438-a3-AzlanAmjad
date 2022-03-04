@@ -15,7 +15,170 @@ Text…
 
 # 2 Manual data-flow coverage calculations for X and Y methods
 
-Saud and Rohan
+DataUtilities - calculateColumnTotal(): 
+
+Data Flow Graph: 
+
+![calcColumnTotal](https://github.com/seng438-winter-2022/seng438-a3-AzlanAmjad/blob/919e828de1110f588dfd43e8bf421ae9fa7ff117/media/dfgcalcColumnTotal.png)
+
+def-use sets per statement:
+
+def(1): {data, column}
+
+use(1): {}
+
+def(2): {total, rowCount}
+
+use(2): {data}
+
+def(3): {r}
+
+use(3): {r}
+
+def(4): {n}
+
+use(4): {data}
+
+def(5): {}
+
+use(5): {}
+
+def(6): {}
+
+use(6): {n}
+
+def(7): {}
+
+use(7): {}
+
+def(8): {total}
+
+use(8): {n}
+
+
+DU-pairs per variable:
+
+data:
+
+{1,2}, {1,4}
+
+column: 
+
+{1,4}
+
+total:
+
+
+rowCount:
+
+{2,4}
+
+r:
+
+{3,3}
+
+n:
+
+{4,6}, {4,8}
+
+
+
+Which pairs are covered for each test case:
+
+testCalculateFirstColumnTotal: {1,2}, {1,4}, {2,4}, {3,3}, {4,6}, {4,8}
+
+
+DU-Pair coverage:
+
+CU = 4
+
+PU = 2
+
+CUc = 4
+
+CUp = 2
+
+CUf = 0
+
+PUf = 0
+
+CU + PU / (CUc + PUc) - (CUf + PUf)
+
+4 + 2 / (4 + 2) - (0 + 0) = 1 * 100% = 100% coverage
+
+
+
+Range - getCentralValue(): 
+
+Data Flow Graph: 
+
+![getCentralValue](https://github.com/seng438-winter-2022/seng438-a3-AzlanAmjad/blob/20a429f0686042bdbb32bf35e15259464213dd35/media/Range.getCentralValue_Dataflow_Graph.jpg)
+
+def-use sets per statement:
+
+def(1): {lower, upper}
+
+use(1): {}
+
+def(2): {}
+
+use(2): {lower, upper}
+
+def(3): {}
+
+use(3): {}
+
+def(4): {lower, upper}
+
+use(4): {}
+
+def(6): {}
+
+use(6): {lower, upper}
+
+
+DU-pairs per variable:
+
+lower: 
+
+{1,2}, {1,6}, {4,6} 
+
+upper: 
+
+{1,2}, {1,6}, {4,6}
+
+
+Which pairs are covered for each test case:
+
+calculatingDoubleMaxtoDoubleMin: {1,2}, {1,6}, {4,6} 
+
+calculatingDoubleMaxPlusOneDoubleMinPlusOne: {1,2}, {1,6}, {4,6} 
+
+calculatingDoubleMaxMinusOneDoubleMinMinusOne: {1,2}, {1,6}, {4,6} 
+
+calculatingZeroAndHundred: {1,2}, {1,6}, {4,6} 
+
+calculatingCentralValueOfTwoNegativeRangeValues: {1,2}, {1,6}, {4,6} 
+
+
+DU-Pair coverage:
+
+CU = 1
+
+PU = 1
+
+CUc = 1
+
+CUp = 1
+
+CUf = 0
+
+PUf = 0
+
+CU + PU / (CUc + PUc) - (CUf + PUf)
+
+1 + 1 / (1 + 1) - (0 + 0) = 1 * 100% = 100% coverage
+
 
 # 3 A detailed description of the testing strategy for the new unit test
 
