@@ -230,7 +230,18 @@ To reach the adequacy criteria, we plan to develop tests which focus on increasi
 
 # 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
 
-Text...
+calculateRowTotal2DRows() - In the initial test suite, we had omitted testing the calculateRowTotal's overloaded method. As a result our instruction, branch, and method coverage suffered. To increase the coverages in DataUtilities, we included testing the overloaded method. We used mocking to input data into the method, using the source code as a reference, and following the "common path". However, as we used the common the path, we did not get 100% for branch  and instructions coverages. To achieve such feat, we must test the output using a null value as one of the inputs, resulting in all the branches being covered.
+
+calculatingPercentageWithNull() - In our initial test suite from lab 2, we did not achieve 100% in branch and instructions coverage for getCumulativePercentages() method. To achieve 100% we needed to test an additional branch. By using mocking, we inputted a null value for one of the inputs, which satisfied an "if statement" in the method which checked for null values. This resulted in all the branches being covered, and in turn all the instructions being covered. 
+
+calculateColumnTotalWithNullValues() - For the method calculateColumnTotal(), we did not testtall the branches due to lack of knowledge of source code. By observing the source code, we noticed that an additional branch which checked for null values was ommitted in our initial test suite. Using mocking, we provided the method with a null value for one of the rows, resulting in the branch being covered. As a result, both our instruction and branch coverage increased for DataUtilities class. 
+
+intersectsTrueFromBottom() - To increase both branch coverage and instruction coverage, test cases were created for intersects() method. Previously, 
+we did not have any test cases for this method. Since branch coverage is a stronger form of coverage than instruction coverage as it follows that
+testing all branches means we have tested all statements, or instructions in the reported metrics. The test cases were created from observing the
+source code and recognizing the different branches that originated from the if conditions in the source code. This test case results in one branch being tested. The selected branch being tested is when b0 <= this.lower
+
+intersectTrueFromTop() - As the previous test (intersectsTrueFromBottom) tests one branch of intersects() method. This test, covers the other branch. The source code is executed differently if b0 > this.lower which is a different branch being tested. Together these two test cases give 100% full branch coverage and 100% instruction coverage for the method intersects.
 
 # 5 A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)
 
