@@ -277,25 +277,29 @@ Method Coverage:
 
 # 6 Pros and Cons of coverage tools used and Metrics you report
 
-The metrics we chose are: instruction, branch, and condition coverage. The sole tool we used is EclEmma in this lab.
+The metrics we chose are: instruction, branch, and method coverage. The sole tool we used is EclEmma in this lab.
 
 Pros of Instruction Coverage:
+Very simple to create test cases for. A stronger form of coverage than method coverage. 
 
 Cons of Instruction Coverage:
+Not comprehensive enough to find faults in the system.
 
 Pros of Branch Coverage:
+Subsumes instruction coverage which means 100% branch coverage will result in 100% instruction coverage.
 
 Cons of Branch Coverage:
+Difficult to create test cases for as an analysis of the control flow of the source code is required.
 
-Pros of Condition Coverage:
-
-Cons of Condition Coverage:
+Pros of Method Coverage:
+Very simple to create test cases for.
+Cons of Method Coverage:
+Very general, not comprehensive enough to find faults in the system.
 
 Pros of EclEmma:
-
+WORK NEEDED
 Cons of EclEmma:
-
-
+Does not show condition coverage
 
 
 # 7 A comparison on the advantages and disadvantages of requirements-based test generation and coverage-based test generation.
