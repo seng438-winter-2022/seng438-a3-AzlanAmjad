@@ -206,7 +206,7 @@ Range
 
 ## Measuring Data Flow Coverage Manually
 
-
+For the measurement of Data Flow coverage, we made a Control Flow graph and modified it by adding the defs and uses for each variable. This helped us keep track of the changes in read and write of different variables, and see the flow of data. As a result, we used our test suite from lab 2 which covered the two methods, calculateColumnTotal() and getCentralValue(), and calculated DU-pair coverage using the provided formula. As an additional step, we checked the calculated value with EclEmma's produced coverage, and found that the calculations were consistent with the instructions coverage of 100%. 
 
 ## Test Suite Development
 
