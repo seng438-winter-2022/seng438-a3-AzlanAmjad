@@ -297,7 +297,7 @@ Cons of Method Coverage:
 Very general, not comprehensive enough to find faults in the system.
 
 Pros of EclEmma:
-WORK NEEDED
+One major pro for EclEmma we found was the ease of use. As the Eclipse IDE has EclEmma built-in, we were quickly able to see our Lab 2 Test Suite's coverage in various "counters" and start work on Lab 3. Unlike Mockito, which is a seperate library and required us to set up Maven for it to fully work, EclEmma had no prerequisite's. 
 Cons of EclEmma:
 Does not show condition coverage
 
